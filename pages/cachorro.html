@@ -21,22 +21,8 @@
         </div>
         <div class="column">
             <div class="columns">
-                <div class="column is-one-third">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Phasellus nec iaculis mauris.
-                                    <br>
-                                    <strong>Preço: R$ 20,00</strong>
-                                  </div>
-                        </div>
-                    </div>
+                <div id="products" class="column">
+                    
                 </div>
             </div>
         </div>
@@ -44,5 +30,47 @@
 </div>
 
 <script>
-    console.log('script em cachorro carregado!');
+    $(document).ready(function() {
+        $('#products').append(makeTable());
+        fetchData();
+    });
+
+    function makeTable() {
+        return `
+            <table id="produtos" class="table is-fullwidth is-striped">
+                <thead>
+                    <th>Categoria</th>
+                    <th>Produto</th>
+                    <th>Descricao</th>
+                    <th>Preço</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        `;
+    }
+
+    function insertTableProduct(product, type) {
+        var appendContent = `
+            <tr>
+                <td>` +  type + `</td>
+                <td>` +  product.produto + `</td>
+                <td>` +  product.descricao + `</td>
+                <td>R$` +  product.preco.toFixed(2) + `</td>
+            </tr>
+        `;
+        $('#products tr:last').after(appendContent);
+    }
+
+    function fetchData() {
+        $.getJSON('produtos/cachorro.json', function(data) {
+            data.forEach(function(currentType) {
+                var type = currentType.categoria;
+                currentType.produtos.forEach(function(product) {
+                    insertTableProduct(product, type);
+                });
+            });
+        });
+    }
+
 </script>

@@ -1,19 +1,42 @@
-{
-    "comida": [ 
-        { 
-            "produto": "Ração marca X",
-            "descricao": "Ração premium para cachorros",
-            "preco": 50.00
-        },
-        { 
-            "produto": "Ração marca Y",
-            "descricao": "Ração classica para cachorros",
-            "preco": 30.00
-        },
-        { 
-            "produto": "Ração marca LittleDog",
-            "descricao": "Ração para filhotes",
-            "preco": 35.90
-        }
-    ]
-}
+[ 
+    {
+        "categoria": "comida",
+        "produtos": [ 
+            { 
+                "nome": "Ração marca X",
+                "descricao": "Ração premium para cachorros",
+                "preco": 50.00
+            },
+            { 
+                "nome": "Ração marca Y",
+                "descricao": "Ração classica para cachorros",
+                "preco": 30.00
+            },
+            { 
+                "nome": "Ração marca LittleDog",
+                "descricao": "Ração para filhotes",
+                "preco": 35.90
+            }
+        ]
+    },
+    {
+        "categoria": "roupa",
+        "produtos": [
+            { 
+                "nome": "Roupa para frio",
+                "descricao": "Linda roupa para cachorros",
+                "preco": 120.00
+            },
+            { 
+                "nome": "Roupa para calor",
+                "descricao": "Linda roupa para cachorros",
+                "preco": 100.00
+            },
+            { 
+                "nome": "Roupa para o natal",
+                "descricao": "Linda roupa para cachorros",
+                "preco": 220.00
+            }
+        ]
+    }
+]
