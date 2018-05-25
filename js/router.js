@@ -32,3 +32,15 @@ function getParameters() {
 
     return obj;
 }
+
+function changeLocation(location, params=[]) {
+    var dest = '#' + location + (params.length > 0 ? '?' : '');
+    
+    for (var i = 0; i < params.length - 1; i++)
+        dest += params[i] + '&';
+    
+    if (params.length > 0)
+        dest += params[i];
+    
+    window.location.href = dest;
+}

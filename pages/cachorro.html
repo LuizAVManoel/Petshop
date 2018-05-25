@@ -11,11 +11,11 @@
                     </span>
                     </p>
                 </div>
-                <label class="panel-block"><input type="checkbox" checked="true">comida</label>
-                <label class="panel-block"><input type="checkbox" checked="true">roupa</label>
-                <label class="panel-block"><input type="checkbox" checked="true">outros</label>
+                <label class="panel-block"><input id="cb-comida" type="checkbox">comida</label>
+                <label class="panel-block"><input id="cb-roupa" type="checkbox">roupa</label>
+                <label class="panel-block"><input id="cb-outros" type="checkbox">outros</label>
                 <div class="panel-block">
-                    <button class="button is-link is-outlined is-fullwidth">Filtrar produtos</button>
+                    <button id="btn-filter" class="button is-link is-outlined is-fullwidth">Filtrar produtos</button>
                 </div>
             </nav>
         </div>
@@ -31,20 +31,43 @@
 
 <script src="../js/products.js"></script>
 <script>
+
+    $('#btn-filter').click(function() {
+        var filter = [];
+        
+        if ($('#cb-comida').prop('checked')) filter.push('filter=comida');
+        if ($('#cb-roupa').prop('checked')) filter.push('filter=roupa');
+        if ($('#cb-outros').prop('checked')) filter.push('filter=outros'); 
+
+        changeLocation('cachorro', filter);
+    });
+
     $(document).ready(function() {
-        $('#products').append(makeTable());
+        $('#products').replaceWith(makeTable());
+    
+        // parametros para filtragem
         var filter = getParameters().filter;
         if (filter === undefined)
-            filter = []
-        console.log(filter);
-        fetchProductsData('produtos/cachorro.json', filter);
+            filter = [];
+
+        // montando tabela
+        mountProductsTable(filter);
     });
+
+    async function mountProductsTable(filter) {
+        var data = await fetchProductsData('produtos/cachorro.json', filter);
+        data.forEach(function(element) {
+            element.produtos.forEach(function(product) {
+                insertTableProduct(product);
+            });
+        });
+    }
 
     function makeTable() {
         return `
+        <div id="products" class="column">
             <table id="produtos" class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead>
-                    <th>Categoria</th>
                     <th>Produto</th>
                     <th>Descricao</th>
                     <th>Preço</th>
@@ -52,13 +75,13 @@
                 <tbody>
                 </tbody>
             </table>
+        </div>
         `;
     }
 
-    function insertTableProduct(product, type) {
+    function insertTableProduct(product) {
         var appendContent = `
             <tr>
-                <td>` +  type + `</td>
                 <td>` +  product.nome + `</td>
                 <td>` +  product.descricao + `</td>
                 <td>R$` +  product.preco.toFixed(2) + `</td>
