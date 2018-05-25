@@ -11,8 +11,8 @@
                     </span>
                     </p>
                 </div>
-                <label class="panel-block"><input type="checkbox" checked="true">comidas</label>
-                <label class="panel-block"><input type="checkbox" checked="true">roupas</label>
+                <label class="panel-block"><input type="checkbox" checked="true">comida</label>
+                <label class="panel-block"><input type="checkbox" checked="true">roupa</label>
                 <label class="panel-block"><input type="checkbox" checked="true">outros</label>
                 <div class="panel-block">
                     <button class="button is-link is-outlined is-fullwidth">Filtrar produtos</button>
@@ -29,10 +29,15 @@
     </div>
 </div>
 
+<script src="../js/products.js"></script>
 <script>
     $(document).ready(function() {
         $('#products').append(makeTable());
-        fetchData();
+        var filter = getParameters().filter;
+        if (filter === undefined)
+            filter = []
+        console.log(filter);
+        fetchProductsData('produtos/cachorro.json', filter);
     });
 
     function makeTable() {
@@ -60,17 +65,6 @@
             </tr>
         `;
         $('#products tr:last').after(appendContent);
-    }
-
-    function fetchData() {
-        $.getJSON('produtos/cachorro.json', function(data) {
-            data.forEach(function(currentType) {
-                var type = currentType.categoria;
-                currentType.produtos.forEach(function(product) {
-                    insertTableProduct(product, type);
-                });
-            });
-        });
     }
 
 </script>
