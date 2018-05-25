@@ -37,7 +37,7 @@
 
     function makeTable() {
         return `
-            <table id="produtos" class="table is-fullwidth is-striped">
+            <table id="produtos" class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead>
                     <th>Categoria</th>
                     <th>Produto</th>
@@ -54,7 +54,7 @@
         var appendContent = `
             <tr>
                 <td>` +  type + `</td>
-                <td>` +  product.produto + `</td>
+                <td>` +  product.nome + `</td>
                 <td>` +  product.descricao + `</td>
                 <td>R$` +  product.preco.toFixed(2) + `</td>
             </tr>
