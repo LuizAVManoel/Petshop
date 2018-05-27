@@ -7,16 +7,22 @@
                 <div class="box">
                     <form>
                         <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                            <div class="control has-icons-left">
+                              <input class="input is-large" type="email" placeholder="Seu email">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                              </span>
                             </div>
-                        </div>
+                          </div>
 
                         <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="password" placeholder="Your Password">
+                            <div class="control has-icons-left">
+                              <input class="input is-large" type="password" placeholder="Sua senha">
+                              <span class="icon is-small is-left">
+                                <i class="fas fa-key"></i>
+                              </span>
                             </div>
-                        </div>
+                          </div>
                         <div class="field">
                             <label class="checkbox">
               <input type="checkbox">
@@ -38,10 +44,9 @@
 <script>
     $('#btn-login').click(function(event) {
         event.preventDefault();
-        console.log('fui clicado');
+        console.log('loggin..');
     });
 
     $(document).ready(function() {
-        console.log('login');
     });
 </script>
