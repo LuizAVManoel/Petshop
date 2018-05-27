@@ -55,7 +55,7 @@
     });
 
     async function mountProductsTable(filter) {
-        var data = await fetchProductsData('produtos/cachorro.json', filter);
+        var data = await fetchProductsData('data/produtos/cachorro.json', filter);
         data.forEach(function(element) {
             element.produtos.forEach(function(product) {
                 insertTableProduct(product);
