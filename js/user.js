@@ -110,7 +110,7 @@ function userRemoveProduct(productToRemove) {
     var index = -1;
 
     for (var i = 0; i < user['products'].length; i++) {
-        var prod = user['products'];
+        var prod = user['products'][i];
         if (productToRemove['id'] === prod['id']) {
             index = i;
             break;
@@ -121,5 +121,6 @@ function userRemoveProduct(productToRemove) {
         user['num_itens'] -= prod['count'];
         user['total_cart'] -= prod['count'] * productToRemove['preco'];
         user['products'].splice(index, 1);
+        updateNavCallback();
     }
 }

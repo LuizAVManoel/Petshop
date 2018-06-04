@@ -41,7 +41,7 @@
     function mountProductView(product, count) {
         return `
             <div class="cart-header">
-                <div class="close1"> </div>
+                <div class="close1 `+ product['id'] +`" onclick="itemClosed(this)"> </div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
                                 <img src="`+ product['foto'] + `" class="img-responsive" alt="">
@@ -64,4 +64,14 @@
         alert('Parabéns você fez uma compra.');
         changeLocation('home');
     });
+
+    async function itemClosed(item) {
+        var product = await fetchProduct('produtos', parseInt(item.className.split(' ')[1]));
+        userRemoveProduct(product);
+
+        $(item.parentNode).fadeOut('slow', function() {
+            $(item.parentNode).remove();
+        });
+    }
+
 </script>
