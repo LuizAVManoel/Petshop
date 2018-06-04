@@ -1,0 +1,79 @@
+<!--content-->
+<div class="content">
+    <div class="products-agileinfo">
+            <h2 class="tittle">Produtos para animais</h2>
+        <div class="container">
+            <div class="product-agileinfo-grids w3l">
+                <div class="col-md-3 product-agileinfo-grid">
+                    <div class="categories">
+                        <h3>Categorias</h3>
+                        <ul class="tree-list-pad">
+                            <li><input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><span></span>Todos os produtos</label>
+                                <ul>
+                                <li><a href="#products?filter=">Tudo</a></li>
+                                <li><a href="#products?filter=comida">Comidas</a></li>
+                                <li><a href="#products?filter=brinquedo">Brinquedos</a></li>
+                                <li><a href="#products?filter=outros">Outros</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="cat-img">
+                        <img class="img-responsive " src="images/45.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-9 product-agileinfon-grid1 w3l">
+                    <div class="mens-toolbar">
+                        <p >Mostrando 1–9 de 21 resultados</p>
+                         <p class="showing">Ordenar por
+                            <select>
+                                  <option value=""> Nenhum</option>
+                                  <option value=""> Menor Preço</option>
+                                    <option value="">Nome</option>
+                            </select>
+                          </p> 
+                          <p>Mostrar
+                            <select>
+                                  <option value="">9</option>
+                                  <option value="">10</option>
+                                    <option value=""> 11 </option>
+                                    <option value=""> 12 </option>
+                            </select>
+                          </p>
+                        <div class="clearfix"></div>		
+                    </div>
+
+                    <div id="products-content"></div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var params = getParameters();
+        var filter = '';
+        
+        if (params['filter'])
+            filter = params['filter'];
+        
+        buildProductsView(filter);
+    });
+
+    async function buildProductsView(filter='') {
+        var products = await fetchAllProducts('produtos', filter);
+        var htmlContent = '<div class="arrivals-grids">';
+
+        var i = 0;
+        products.forEach(function(element) {
+            htmlContent += createProductPreview(element);
+            if (++i % 4 === 0) 
+                htmlContent += '<div class="clearfix"></div>';
+        });
+        htmlContent += '</div>';
+        $('#products-content').html(htmlContent);
+    }
+</script>

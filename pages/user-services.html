@@ -1,0 +1,77 @@
+<div class="container">
+
+<div class="page-header text-center">
+    <h3 class="bars">Meus Serviços</h3>
+</div>
+
+<div id="table-user-services" class="bs-docs-example">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Tipo do Serviço</th>
+                <th>Horário</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div id="user-services-alert" class="alert alert-info" role="alert">
+    <strong>Você não possui serviços agendados!</strong> Agende serviços com a gente pelo área de <a href="#services">serviços.</a>
+</div>
+
+<div class="page-header text-center">
+    <h3 class="bars hide">Meus Serviços</h3>
+</div>
+<div class="page-header text-center">
+    <h3 class="bars hide">Meus Serviços</h3>
+</div>
+<div class="page-header text-center">
+        <h3 class="bars hide">Meus Serviços</h3>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function() {
+        if (!isUserLogged()) {
+            changeLocation('login', ['requested=user-services']);
+        }
+
+        var services = userGetServices();
+
+        if (services.length == 0) {
+            console.log('alou');
+            $('#user-services-alert').show();
+            $('#table-user-services').hide();
+        }
+        else {
+            $('#user-services-alert').hide();
+            $('#table-user-services').show();
+
+            mountTable(services);
+        }
+    });
+
+    function mountTable(services) {
+        services.forEach(function(element) {
+            var dd = element['date'].getDate();
+            var mm = element['date'].getMonth()+1;
+            var yyyy = element['date'].getFullYear();
+            if(dd<10) dd='0'+dd;
+            if(mm<10) mm='0'+mm;
+
+            var date = dd+'/'+mm+'/'+yyyy;
+            $('#table-user-services tr:last').after(`
+                <tr>
+                    <td>` + date + `</td>
+                    <td>` + element['type'] + `</td>
+                    <td>` + element['hour'] + `</td>
+                </tr>
+            `);
+        });
+    }
+</script>

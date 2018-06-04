@@ -1,0 +1,29 @@
+<div class="content">
+    <div class="mail-w3ls">
+        <div class="container">
+            <div class="mail-grids">
+                <div class="mail-bottom">
+                    <h4>Fale conosco</h4>
+                    <div class="alert alert-success" role="alert" style="display: none;">
+                        <strong>Muito Obrigado!</strong> Sua mensagem foi enviada para nossa equipe.
+                    </div>
+                    <form id="form-mail">
+                        <input type="text" value="Nome" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nome';}" required="">
+                        <input type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        <input type="text" value="Telefone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telefone';}" required="">
+                        <textarea  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mensagem...';}" required="">Mensagem...</textarea>
+                        <input type="submit" value="Enviar" >
+                        <input type="reset" value="Limpar" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#form-mail').submit(function(event) {
+        event.preventDefault();
+        $('.alert-success').show().delay(3000).fadeOut();
+    });
+</script>

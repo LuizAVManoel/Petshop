@@ -1,0 +1,98 @@
+<!--content-->
+<div class="content">
+    <!--single-->
+    <div class="single-wl3">
+        <div class="container">
+            <div class="single-grids">
+                <div class="col-md-9 single-grid">
+                    <div clas="single-top">
+                        <div class="single-left">
+                            <div class="flexslider">
+                                <ul class="slides">
+                                    <li>
+                                        <div class="thumb-image"><img id="img_src" src="images/product2.png" style="width: 100%;"></div>
+                                    </li>
+                                 </ul>
+                            </div>
+                        </div>
+                        <div class="single-right simpleCart_shelfItem">
+                            <h4 id="prod_name">Nome produto</h4>
+                            <p id="price" class="price item_price"></p>
+                            <div id="description" class="description">
+                                <p><span>Resumo : </span> Um resumo bem legal.</p>
+                            </div>
+                            <div class="color-quality">
+                                <h6>Quantidade :</h6>
+                                    <div class="quantity"> 
+                                        <div class="quantity-select">                           
+                                            <div class="entry value-minus1">&nbsp;</div>
+                                            <div id="txt-count" class="entry value1"><span>1</span></div>
+                                            <div class="entry value-plus1 active">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                                <script>
+                                                $('.value-plus1').on('click', function(){
+                                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
+                                                    divUpd.text(newVal);
+                                                });
+
+                                                $('.value-minus1').on('click', function(){
+                                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
+                                                    if(newVal>=1) divUpd.text(newVal);
+                                                });
+                                                </script>
+                            </div>
+                            <div class="women">
+                                <button id="btn-buy" data-text="Add To Cart" class="my-cart-b item_add">Comprar</button>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var product = undefined;
+
+    $(document).ready(function() {
+        var params = getParameters();
+
+        if (params['id']) {
+            product = getProductsInfo(parseInt(params['id']));
+        }
+        else {
+            changeLocation('page_not_found');
+        }
+    });
+
+    async function getProductsInfo(id) {
+        var product = await fetchProduct('produtos', id);
+        if (!product) 
+            changeLocation('page_not_found');
+
+        $('#prod_name').text(product['nome']);
+        $('#price').text('R$ ' + product['preco'].toFixed(2));
+        $('#img_src').attr('src', 'images/product' + id + (id >= 6 ? '.jpg' : '.png'));
+        $('#description').html('<p><span>Resumo : </span> ' + product['descricao'] + '</p>');
+
+        return product;
+    }
+
+    $('#btn-buy').click(function() {
+        if (!isUserLogged()) {
+            changeLocation('login', ['requested=products']);
+            return;
+        }
+
+        product.then(function(p) {
+            userAddProduct(p, parseInt($('#txt-count').text()));
+        });
+
+        changeLocation('products');
+    });
+
+</script>

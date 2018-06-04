@@ -1,0 +1,79 @@
+<div class="container">
+<div class="page-header text-center">
+        <h3 class="bars">Agendar Serviços</h3>
+    </div>
+
+<form id="booking-form" class="booking-form" name="form1">
+    <div id="form-message-success" class="alert alert-success" role="alert" style="display: none;">
+        <strong>Agendado com sucesso!</strong>
+    </div>
+    <div id="form-message-fail" class="alert alert-danger" role="alert" style="display: none;">
+            <strong>Não foi possivel agendar, verifique os dados!</strong>
+        </div>
+    <div id="form-content">
+        <div class="group">
+            <label for="date-from">Dia</label>
+            <div class="addon-right">
+                <input id="date-picker" name="date-from" class="form-control" type="date">
+                <i class="fa fa-calendar"></i>
+            </div>
+        </div>
+        <div class="group">
+            <label for="room-type">Serviço</label>
+            <div>
+                <select id="room-type" name="room-type" class="form-control">
+                    <option value="Banho">Banho</option>
+                    <option value="Tosa">Tosa</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="group">
+            <label for="room-requirements">Horário</label>
+            <div>
+                <select id="room-requirements" name="room-requirements" class="form-control">
+                    <option value="9">9h</option>
+                    <option value="10">10h</option>
+                    <option value="11">11h</option>
+                    <option value="14">13h</option>
+                    <option value="15">16h</option>
+                    <option value="16">17h</option>
+                </select>
+            </div>
+        </div>
+        <div class="group submit">
+            <label class="empty"></label>
+            <div><input name="submit" type="submit" value="Agendar"/></div>
+        </div>
+    <div id="form-loading" class="hide"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+</form>
+</div>
+
+<script>
+    $('#booking-form').submit(function(event) {
+        event.preventDefault();
+
+        var rawDate = $('#date-picker').val()
+        var date = rawDate === '' ? undefined : new Date(rawDate);
+        var service = $('#room-type').val();
+        var hour = $('#room-requirements').val();
+
+        var now = new Date();
+        console.log(now);
+        console.log(date);
+
+        if (date && date.getTime() > now.getTime()) {
+            $('#form-message-success').show().delay(3000).fadeOut();
+            userAddService(date, service, hour);
+        }
+        else {
+            $('#form-message-fail').show().delay(3000).fadeOut();
+        }
+    });
+
+    $(document).ready(function() {
+        if (!isUserLogged()) {
+            changeLocation('login', ['requested=services']);
+        }
+    });
+</script>

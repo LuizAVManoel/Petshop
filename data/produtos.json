@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "categoria": "comida",
+        "nome": "Ração para cachorro",
+        "descricao": "Ração para cachorros de médio e grande porte, rica em nutrientes para promover a saude do seu pet.",
+        "preco": 60,
+        "foto" : "images/product1.png"
+    },
+    {
+        "id": 2,
+        "categoria": "brinquedo",
+        "nome": "Bolinha de tenis",
+        "descricao": "Ótimo brinquedo para seu animal, seja de qualquer espécie.",
+        "preco": 12.90,
+        "foto" : "images/product2.png"
+    },
+    {
+        "id": 3,
+        "nome": "Brinquedo",
+        "categoria": "brinquedo",
+        "descricao": "Brinquedo para seu pet. Os cachorros amam <3.",
+        "preco": 19.90,
+        "foto" : "images/product3.png"
+    },
+    {
+        "id": 4,
+        "nome": "Aquário",
+        "categoria": "outros",
+        "descricao": "O aquário mais tecnológico do mercado. Compre e seus peixes vão se sentir no fundo do mar.",
+        "preco": 120.30,
+        "foto" : "images/product4.png"
+    },
+    {
+        "id": 5,
+        "nome": "Gaiola",
+        "categoria": "outros",
+        "descricao": "Seus pássaros vão adorar essa nova gaiola modelo desenho animado.",
+        "preco": 88.50,
+        "foto" : "images/product5.png"
+    },
+    {
+        "id": 6,
+        "nome": "Coleira simples",
+        "categoria": "outros",
+        "descricao": "Coleira colorida e fashion que todo pet amaria vestir.",
+        "preco": 39.99,
+        "foto" : "images/product6.jpg"
+    },
+    {
+        "id": 7,
+        "categoria": "comida",
+        "nome": "Ração para cachorro super",
+        "descricao": "Ração mais fina que existe no mercado, agrada os paladares mais refinados",
+        "preco": 29.99,
+        "foto" : "images/product7.jpg"
+    },
+    {
+        "id": 8,
+        "categoria": "outros",
+        "nome": "Coleira de jóias",
+        "descricao": "Acessório mais chique para você levar seu pet em bailes, formaturas e ainda sim causar boa impressão.",
+        "preco": 999.99,
+        "foto" : "images/product8.jpg"
+    },
+    {
+        "id": 9,
+        "categoria": "outros",
+        "nome": "Sabonete",
+        "descricao": "Sabote dirty dog deixa seu pet com cheirinho de limão.",
+        "preco": 17.99,
+        "foto" : "images/product9.jpg"
+    },
+    {
+        "id": 10,
+        "categoria": "brinquedo",
+        "nome": "Bolinha Vermelha",
+        "descricao": "Bolinha vermelha muito divertida e bonita, agrada todos os gostos.",
+        "preco": 26.99,
+        "foto" : "images/product10.jpg"
+    }
+]

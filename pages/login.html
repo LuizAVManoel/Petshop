@@ -1,52 +1,47 @@
-<section class="hero is-fullheight">
-    <div class="hero-body">
-        <div class="container has-text-centered">
-            <div class="column is-4 is-offset-4">
-                <h3 class="title has-text-grey">Entrar</h3>
-                <p class="subtitle has-text-grey">Faça o login para continuar.</p>
-                <div class="box">
-                    <form>
-                        <div class="field">
-                            <div class="control has-icons-left">
-                              <input class="input is-large" type="email" placeholder="Seu email">
-                              <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                              </span>
-                            </div>
-                          </div>
-
-                        <div class="field">
-                            <div class="control has-icons-left">
-                              <input class="input is-large" type="password" placeholder="Sua senha">
-                              <span class="icon is-small is-left">
-                                <i class="fas fa-key"></i>
-                              </span>
-                            </div>
-                          </div>
-                        <div class="field">
-                            <label class="checkbox">
-              <input type="checkbox">
-              Lembrar-me
-            </label>
-                        </div>
-                        <button id="btn-login" class="button is-block is-info is-large is-fullwidth">Login</button>
-                    </form>
-                </div>
-                <p class="has-text-grey">
-                    <a href="#cadastrar">Cadastrar</a> &nbsp;·&nbsp;
-                    <a href="">Esqueci minha senha</a> &nbsp;·&nbsp;
-                </p>
+<!--content-->
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Entrar em Petshop</h3>
+                <form id="form-login">
+                    <div class="key">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input id="input-email" type="text" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input id="input-password" type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <p id="invalid-user" style="color: red; display: none;">Credenciais inválidas, use email: petshop@petshop e senha: admin.</p>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div class="forg">
+                <a href="#" class="forg-left">Esqueci minha senha</a>
+                <a href="#signup" class="forg-right">Criar conta</a>
+            <div class="clearfix"></div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
 <script>
-    $('#btn-login').click(function(event) {
+    $('#form-login').submit(function(event) {
         event.preventDefault();
-        console.log('loggin..');
-    });
 
-    $(document).ready(function() {
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
+
+        if (userLogin(email, password)) {
+            var params = getParameters();
+            params['requested'] ? changeLocation(params['requested']) : changeLocation('home');
+        }
+        else {
+            $('#invalid-user').show();
+        }
     });
 </script>

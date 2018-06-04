@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="cart-items">
+        <div class="container">
+                <h2>Meu carrinho</h2>
+
+                <div id="checkout-products"></div>
+
+                <div id="no-item" class="alert alert-warning" role="alert" style="display: none;">
+                    <p><strong>Você não possui itens no carrinho</strong>, não perca tempo e corra para loja!</p>
+                </div>
+
+                <h1><a id="btn-comprar"><span class="label label-success">Comprar</span></a></h1>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function() {
+        if (!isUserLogged())
+            changeLocation('login');
+
+        if (user['num_itens'] === 0) {
+            $('#no-item').show();
+            $('#btn-comprar').hide();
+        }
+        else {
+            buildProductsViewForBuy();
+        }
+    });
+
+    async function buildProductsViewForBuy() {
+        var products = await fetchAllProducts('produtos');
+        var htmlContent = '';
+
+        user['products'].forEach(function(product) {
+            htmlContent += mountProductView(products[product['id'] - 1], product['count']);
+        });
+
+        $('#checkout-products').html(htmlContent);
+    }
+
+    function mountProductView(product, count) {
+        return `
+            <div class="cart-header">
+                <div class="close1"> </div>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item cyc">
+                                <img src="`+ product['foto'] + `" class="img-responsive" alt="">
+                        </div>
+                        <div class="cart-item-info">
+                        <h3><a href="#product?id=` + product['id']+ `">` + product['nome'] + `</a></h3>
+                        <p class="qty">Quantidade: `+ count + `</p>
+                                <div class="delivery">
+                                <p>Preço: R$ ` + product['preco'].toFixed(2) + `</p>
+                                <div class="clearfix"></div>
+                        </div>	
+                    </div>
+                    <div class="clearfix"></div>                   
+                </div>
+            </div>`;
+    }
+
+    $('#btn-comprar').click(function() {
+        resetUserData();
+        alert('Parabéns você fez uma compra.');
+        changeLocation('home');
+    });
+</script>

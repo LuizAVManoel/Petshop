@@ -1,10 +1,78 @@
-<footer class="footer" style="bottom: 0;">
+<div class="footer-w3l">
     <div class="container">
-        <div class="content has-text-centered">
-        <p>
-            <strong>Petshop</strong> por <a href="">Grupo Bacana</a>. O codigo fonte está sob licença
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. Trabalho feito para Disciplina de Introduçao ao desenvolvimento WEB.
-        </p>
+        <div class="footer-grids">
+            <div class="col-md-3 footer-grid">
+                <h4>Sobre </h4>
+                <p>O petshop trata muito bem os bixinhos !</p>
+                <div class="social-icon">
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                    <i class="glyphicon glyphicon-user"></i>
+                    <i class="glyphicon glyphicon-ok"></i>
+                    <i class="glyphicon glyphicon-heart"></i>
+                </div>
+            </div>
+            <div class="col-md-3 footer-grid">
+                <h4>Minha conta</h4>
+                <ul>
+                    <div id="footer-user">
+                        <li><a href="#checkout">Carrinho</a></li>
+                        <li><a href="#user-services">Meus Serviços</a></li>
+                        <li><a href="#home" id="btn-logout">Sair</a></li>
+                    </div>
+                    <div id="footer-notuser">
+                        <li><a href="#login">Entrar</a></li>
+                        <li><a href="#signup"> Criar conta </a></li>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-grid">
+                <h4>Informações úteis</h4>
+                <ul>
+                    <li><a href="#home">Página principal</a></li>
+                    <li><a href="#products">Produtos</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#mail">Contato</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-grid foot">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:petshop@petshop.com"> petshop@petshop.com</a></li>
+                </ul>
+            </div>
+        <div class="clearfix"> </div>
         </div>
+        
     </div>
-</footer>
+</div>
+<div class="copy-section">
+    <div class="container">
+        <div class="copy-left">
+            <p>&copy; 2017 Petshop . All rights reserved</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        updateFooterCallback = updateUserFooter;
+        updateUserFooter();
+    });
+
+    function updateUserFooter() {
+        if (isUserLogged()) {
+            $('#footer-user').show();
+            $('#footer-notuser').hide();
+        }
+        else {
+            $('#footer-user').hide();
+            $('#footer-notuser').show();
+        }
+    }
+
+    $('#btn-logout').click(function() {
+        console.log('logout');
+        userLogout();
+    });
+</script>

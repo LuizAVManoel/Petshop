@@ -1,0 +1,55 @@
+<!--content-->
+<div class="content">
+        <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile form1">
+                <h3>Crie sua conta</h3>
+                <form id="form-signup">
+                    <div class="key">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input id="input-name" type="text" value="Nome" name="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input id="input-email" type="text" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input id="input-password" type="password" value="password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input id="input-confirm-password" type="password" value="password" name="Confirm Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}" required="">
+                        <div class="clearfix"></div>
+                    </div>
+                    <p id="txt-error" style="color: red; display:none">As senhas não conferem.</p>
+                    <input type="submit" value="Criar">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#form-signup').submit(function(event) {
+        event.preventDefault();
+
+        var name = $('#input-name').val();
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
+        var cPassword = $('#input-confirm-password').val();
+
+        if (password === cPassword) {
+            addUser(name, email, password);
+            changeLocation('login');
+        }
+        else {
+            $('#txt-error').show();
+        }
+    });
+</script>
