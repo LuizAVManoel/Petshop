@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="mail-w3ls">
+        <div class="container">
+            <div class="mail-grids">
+                <div class="mail-bottom">
+                    <h4>Insira os dados para efetivar a compra:</h4>
+                    <div class="alert alert-success" role="alert" style="display: none;">
+                        <strong>Muito Obrigado!</strong> Sua compra foi efetivada.
+                    </div>
+                    <form id="form-checkout">
+                        <input type="text" value="Nome completo" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nome completo';}" required="">
+                        <input type="text" value="Número do cartão" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nº do cartão';}" required="">
+                        <input type="text" value="Digitos de segurança" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Digitos de segurança';}" required="">
+                        <input type="submit" value="Efetuar compra" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#form-checkout').submit(function(event) {
+        event.preventDefault();
+        $('.alert-success').show().delay(3000).fadeOut();
+		resetUserData();
+        alert('Parabéns você fez uma compra.');
+        changeLocation('home');
+    });
+</script>
