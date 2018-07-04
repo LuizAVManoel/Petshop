@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "RESTful API para o trabalho de desenvolvimento WEB, um serviço de petshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeVicentin/Petshop.git"
+  },
+  "keywords": [
+    "API",
+    "RESTful",
+    "webservice"
+  ],
+  "author": "Guilherme Vicentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeVicentin/Petshop/issues"
+  },
+  "homepage": "https://github.com/GuilhermeVicentin/Petshop#readme"
+}
