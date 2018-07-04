@@ -60,9 +60,7 @@
     }
 
     $('#btn-comprar').click(function() {
-        resetUserData();
-        alert('Parabéns você fez uma compra.');
-        changeLocation('home');
+        changeLocation('checkout_end');
     });
 
     async function itemClosed(item) {
